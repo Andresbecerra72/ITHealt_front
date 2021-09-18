@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Paciente } from './models/paciente.model';
 
 @Injectable({
@@ -37,9 +37,9 @@ obtenerPacientes() {
 guardandoPaciente( paciente: Paciente){
 
 
+const headers = new HttpHeaders().set('content-type', 'application/json');
 
-
-  return this.http.post( this.url, paciente)
+  return this.http.post( this.url, paciente, {headers} )
                   .pipe(
                   map( (resp: any) => {
 

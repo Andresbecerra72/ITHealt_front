@@ -1,5 +1,30 @@
 <app-header></app-header>
 
-<app-table></app-table>
+<app-form (DataForma)=registrarPaciente($event)></app-form>
+<br>
+<br>
+
+<!-- ** Alerta de No hay Registros y Cargando Datos -->
+<div class="row mt-5 animated fadeIn" *ngIf="pacientes_arr.length == 0">
+    <div class="col">
+
+        <div class="alert alert-info text-center" role="alert" *ngIf="message == 'Cargando Base de Datos'">
+            <strong>{{message}}</strong>
+            <br>
+            <i class="fa fa-refresh fa-spin fa-2x"></i>
+            <br>
+            <span class="mt-2">Espere por favor</span>
+        </div>
+
+        <div class="alert alert-warning text-center" role="alert" *ngIf="message !== 'Cargando Base de Datos'">
+            <strong>{{message}}</strong>
+            <br>
+            <i class="fa fa-warning fa-2x"></i>
+        </div>
+
+    </div>
+</div>
+
+<app-table [items]="pacientes_arr" *ngIf="pacientes_arr.length > 0"></app-table>
 
 <app-footer></app-footer>
